@@ -43,18 +43,9 @@ public class TimeCounter implements Runnable {
 
     @Override
     public void run() {
-        while (true) {
-            try {
-
                 setSeconds(1);
                 changeTime(getSeconds(), getMinutes(), getHours());
-                System.out.println(getTime());
-                Thread.sleep(1000);
-
-            } catch (InterruptedException e) {
-                System.out.println("Дочерний поток прерван.");
-            }
-        }
+//                System.out.println(getTime());
     }
 
 

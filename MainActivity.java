@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,15 +29,17 @@ public class MainActivity extends AppCompatActivity {
 
         final Handler handler = new Handler();
         handler.post(new Runnable() {
-            int k = 0;
+            final TimeCounter timeCounter = new TimeCounter();
+
 
             public void run() {
                 TextView textView = findViewById(R.id.time_view);
-                textView.setText(k + "%");
+                textView.setText(timeCounter.getTime());
 
-                k++;
-                if (k < 1000) {
-                    handler.postDelayed(this, 15);
+                if (timeCounter.getHours() != 24) {
+                    timeCounter.run();
+
+                    handler.postDelayed(this, 1000);
 
                 }
                 // Here `this` refers to the anonymous `Runnable`
